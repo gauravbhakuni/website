@@ -151,7 +151,7 @@ const NewLaunches = () => {
         <CarouselNext className="px-auto" />
       </Carousel>
       <div className="pt-16">
-        <h1 className="text-3xl md:text-5xl text-orange-400">Step up your style game with our latest collection</h1>
+        <h1 className="px-4 text-xl sm:text-3xl md:text-5xl text-orange-400">Step up your style game with our latest collection</h1>
       </div>
     </div>
   )

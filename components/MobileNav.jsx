@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { SiNike } from "react-icons/si";
+
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { usePathname } from "next/navigation";
 import { CiMenuFries } from "react-icons/ci";
@@ -11,20 +13,16 @@ const links = [
     path: '/'
   },
   {
-    name: 'services',
-    path: '/services'
+    name: 'products',
+    path: '/products'
   },
   {
-    name: 'resume',
-    path: '/resume'
+    name: 'about us',
+    path: '/aboutus'
   },
   {
-    name: 'work',
-    path: '/work'
-  },
-  {
-    name: 'contact',
-    path: '/contact'
+    name: 'contact us',
+    path: '/contactus'
   },
 ]
 
@@ -35,13 +33,14 @@ const MobileNav = () => {
       <SheetTrigger className="flex justify-center items-center">
         <CiMenuFries className="text-[32px] text-accent" />
       </SheetTrigger>
-      
+
       <SheetContent className="flex flex-col">
-        <div className="mt-32 mb-40 text-center text-2xl">
+        <div className="mt-32 mb-32 flex items-center justify-center">
           <Link href="/">
-          <h1 className="text-4xl text-white fonst-semibold">
-            bhakuni<span className="text-accent hover:text-accent-hover">.</span>
-          </h1>
+            <h1 className="text-white font-semibold flex items-center">
+              <span className="text-6xl"><SiNike /></span>
+              <span className="ml-4 text-4xl">Nike</span>
+            </h1>
           </Link>
         </div>
 

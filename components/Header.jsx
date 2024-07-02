@@ -1,17 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "./ui/button";
-import MobileNav from "./MobileNav";
 
 import { SiNike } from "react-icons/si";
 
 //components
-// import Nav from "./Nav";
-// import MobileNav from "./MobileNav";
+import Nav from "./Nav";
+import MobileNav from "./MobileNav";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
+
+    const handleSearch = (query) => {
+        console.log(query);
+      };
+
     return (
         <header className="py-8 xl:py-12 bg-black/60 text-white">
-            <div className="container mx-0 smm:gap-36 sm:mx-auto flex justify-between items-center">
+            <div className="container mx-auto flex justify-between items-center">
 
                 {/* logo */}
                 <Link href="/">
@@ -23,12 +30,8 @@ const Header = () => {
 
                 {/* desktop nav */}
                 <div className="hidden xl:flex items-center gap-8">
-                    {/* <Nav /> */}
-                    <Link href="/contact">
-                        <Button>
-                            Hire me
-                        </Button>
-                    </Link>
+                    <Nav />
+                    <SearchBar onSearch={handleSearch} />
                 </div>
 
                 {/* mobile nav */}

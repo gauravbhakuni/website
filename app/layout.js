@@ -4,6 +4,8 @@ import "./globals.css";
 //components
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
+import FadeTransition from "@/components/FadeTransition";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -33,7 +35,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={roboto.variable}>
         <Header />
-          {children}
+          <FadeTransition />
+          <PageTransition>{children}</PageTransition>
         <Footer />
       </body>
     </html>
