@@ -9,8 +9,7 @@
 
 /* Define scrollbar styles */
 ::-webkit-scrollbar {
-  width: 10px; /* Width of the scrollbar */
-  content: "NIKE";
+  width: 40px;
   color: black;
 }
 
