@@ -111,7 +111,7 @@ const NewLaunches = () => {
   };
 
   return (
-    <div className="bg-black flex flex-col items-center h-[80vh] smm:pt-24 sm:pt-16 md:pt-20 xl:pt-24">
+    <div className="bg-black flex flex-col items-center h-[60vh] sm:h-[80vh] smm:pt-24 sm:pt-16 md:pt-20 xl:pt-24">
       <h1 className="text-white text-4xl sm:text-6xl text-left pb-6">New Launches</h1>
       <Carousel
         opts={{
@@ -150,7 +150,7 @@ const NewLaunches = () => {
         <CarouselPrevious className="px-auto" />
         <CarouselNext className="px-auto" />
       </Carousel>
-      <div className="pt-16">
+      <div className="pt-8 sm:pt-16">
         <h1 className="px-4 text-xl sm:text-3xl md:text-5xl text-orange-400">Step up your style game with our latest collection</h1>
       </div>
     </div>
