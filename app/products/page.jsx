@@ -115,7 +115,7 @@ const Products = () => {
       <div>
         <h1 className="text-center text-3xl md:text-5xl">All Collections</h1>
       </div>
-      <div className="container mt-6 h-[8vh] bg-black flex justify-between items-center">
+      <div className="sm:container mt-6 h-[8vh] bg-black flex justify-between items-center">
         <div>
           <Breadcrumb>
             <BreadcrumbList>
@@ -139,7 +139,7 @@ const Products = () => {
       </div>
 
 
-      <div className="container py-6">
+      <div className="sm:container py-6">
         <div className="grid grid-cols-3 md:grid-cols-4">
           {shoes.map((shoe, index) => (
             <div className="p-1" key={index}>
