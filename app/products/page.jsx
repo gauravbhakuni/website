@@ -115,7 +115,7 @@ const Products = () => {
       <div>
         <h1 className="text-center text-3xl md:text-5xl">All Collections</h1>
       </div>
-      <div className="sm:container mt-6 h-[8vh] bg-black flex justify-between items-center">
+      <div className="smm:px-4 sm:container mt-6 h-[8vh] bg-black flex justify-between items-center">
         <div>
           <Breadcrumb>
             <BreadcrumbList>
@@ -131,6 +131,7 @@ const Products = () => {
         </div>
         <div>
           <select className="mt-2 w-full bg-black/80 border rounded shadow-lg z-10">
+            <option selected disabled>Sort By</option>
             <option>Featured</option>
             <option>Price - Low to High</option>
             <option>Price - High to Low</option>

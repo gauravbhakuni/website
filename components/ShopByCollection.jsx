@@ -11,7 +11,7 @@ import trendingCollection from "../public/assets/images/nike9.webp";
 
 const ShopByCollection = () => {
     return (
-        <div className="pt-10 bg-white h-[60vh] md:h-[50vh]">
+        <div className="pt-10 bg-white h-[65vh] md:h-[50vh]">
             <h1 className="text-black text-4xl sm:text-5xl text-center pb-6">SHOP BY COLLECTIONS</h1>
             <div className="px-10 py-6 grid grid-cols-2 md:grid-cols-4 gap-8 h-[50vh] md:h-[44vh]">
 
