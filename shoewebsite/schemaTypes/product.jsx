@@ -1,3 +1,5 @@
+import { title } from "process";
+
 export default {
     name: 'product',
     title: 'Product',
@@ -28,6 +30,14 @@ export default {
             title: 'Product Images',
             type: 'array',
             of: [{ type: 'image' }],
+        },
+        {
+            name: 'slug',
+            title: 'Product Slug',
+            type: 'slug',
+            options: {
+                source: 'name',
+            },
         },
         {
             name: 'categories',

@@ -24,6 +24,10 @@ const links = [
     name: 'contact us',
     path: '/contactus'
   },
+  {
+    name: 'cart',
+    path: '/cart'
+  },
 ]
 
 const MobileNav = () => {

@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import FadeTransition from "@/components/FadeTransition";
+import { CartProvider } from "./context/CartContext";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -34,10 +35,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={roboto.variable}>
-        <Header />
-          <FadeTransition />
-          <PageTransition>{children}</PageTransition>
-        <Footer />
+        <CartProvider>
+          <Header />
+            <FadeTransition />
+            <PageTransition>{children}</PageTransition>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

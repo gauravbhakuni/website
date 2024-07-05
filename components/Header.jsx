@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 
 import { SiNike } from "react-icons/si";
+import { MdShoppingCart } from "react-icons/md";
 
 //components
 import Nav from "./Nav";
@@ -32,11 +33,13 @@ const Header = () => {
                 <div className="hidden xl:flex items-center gap-8">
                     <Nav />
                     <SearchBar onSearch={handleSearch} />
+                    <Link href="/cart"><span className="text-2xl text-white/40 hover:text-white cursor-pointer"><MdShoppingCart/></span></Link>
                 </div>
 
                 {/* mobile nav */}
-                <div className="xl:hidden">
+                <div className="flex items-center gap-2 xl:hidden">
                     <MobileNav />
+                    <Link href="/cart"><span className="text-2xl text-white/40 hover:text-white cursor-pointer"><MdShoppingCart/></span></Link>
                 </div>
             </div>
         </header>

@@ -1,6 +1,11 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { urlFor } from "@/app/lib/sanity";
+
+import { getData, getAllData } from "@/components/GetData";
+import ImageCarousel from "@/components/ImageCarousel";
 
 const shoes = [
   {
@@ -86,35 +91,26 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
-import { Card, CardContent } from "@/components/ui/card"
-
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-
-const handleClick = (shoe) => {
-  console.log(shoe.name);
-};
 
 const Products = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [products, setProducts] = useState([]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+        const allProducts = await getAllData();
+        setProducts(allProducts);
+    };
+
+    fetchData();
+}, []);
+
   return (
-    <div className="mt-8">
-      <div>
-        <h1 className="text-center text-3xl md:text-5xl">All Collections</h1>
-      </div>
+    <div className="pt-8 bg-white">
       <div className="smm:px-4 sm:container mt-6 h-[8vh] bg-black flex justify-between items-center">
         <div>
           <Breadcrumb>
@@ -139,34 +135,23 @@ const Products = () => {
         </div>
       </div>
 
-
-      <div className="sm:container py-6">
-        <div className="grid grid-cols-3 md:grid-cols-4">
-          {shoes.map((shoe, index) => (
-            <div className="p-1" key={index}>
-              <Card className="h-full" onClick={() => handleClick(shoe)}>
-                <CardContent className="relative flex flex-col items-center p-4 h-full">
-                  <div className="hidden group-hover:flex absolute top-0 z-40 space-x-2 mt-4 justify-start">
-                    {shoe.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="text-sm bg-blue-200 text-blue-800 opacity-70 rounded-sm px-2 py-1">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <Image
-                    src={shoe.image}
-                    alt={shoe.name}
-                    width={100}
-                    height={100}
-                    className="mb-4"
-                  />
-                  <span className="text-[0.7rem] md:text-[1rem] text-white text-center">{shoe.name}</span>
-                  <span className="text-lg text-gray-300">₹{shoe.price.toFixed(2)}</span>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
-        </div>
+      <div>
+        <h1 className="text-center pt-8 text-3xl text-black md:text-5xl">All Products</h1>
+      </div>
+      <div className="bg-white flex flex-col items-center pt-8">
+        <ImageCarousel products={products} />
+      </div>
+      <div className="bg-white flex flex-col items-center">
+        <ImageCarousel products={products} />
+      </div>
+      <div className="bg-white flex flex-col items-center">
+        <ImageCarousel products={products} />
+      </div>
+      <div className="bg-white flex flex-col items-center">
+        <ImageCarousel products={products} />
+      </div>
+      <div className="bg-white flex flex-col items-center pb-10">
+        <ImageCarousel products={products} />
       </div>
     </div>
   );

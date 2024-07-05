@@ -5,7 +5,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="bg-black text-white py-4">
-      <div className="mx-auto px-4">
+      <div className="px-4">
         <div className="grid grid-rows-2 md:grid-cols-2">
           <div className='text-center md:text-left'>
             <p>&copy; 2024 Nike. All rights reserved.</p>
