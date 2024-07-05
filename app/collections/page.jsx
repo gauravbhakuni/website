@@ -18,7 +18,6 @@ const Collection = () => {
             const products = await getCollectionData(collection);
             setProducts(products);
         };
-
         fetchData();
     }, []);
 
