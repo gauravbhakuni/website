@@ -29,7 +29,7 @@ const ShopByCollection = () => {
                     <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-xl font-bold z-10 pointer-events-none">
                         Men
                     </div>
-                    <Link href="/products" className="absolute bottom-4 right-4 items-end justify-end hidden group-hover:flex group-hover:text-orange-500 text-4xl z-20 cursor-pointer">
+                    <Link href={{ pathname: '/collections', query: { collection: "Men" }}}  className="absolute bottom-4 right-4 items-end justify-end hidden group-hover:flex group-hover:text-orange-500 text-4xl z-20 cursor-pointer">
                         <BsArrowRightCircleFill />
                     </Link>
                     <span className="absolute bottom-4 right-4 flex items-end justify-end text-white group-hover:hidden text-4xl z-20 cursor-pointer">
@@ -50,7 +50,7 @@ const ShopByCollection = () => {
                     <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-xl font-bold z-10 pointer-events-none">
                         Women
                     </div>
-                    <Link href="/products" className="absolute bottom-4 right-4 items-end justify-end hidden group-hover:flex group-hover:text-orange-500 text-4xl z-20 cursor-pointer">
+                    <Link href={{ pathname: '/collections', query: { collection: "Women" }}} passHref className="absolute bottom-4 right-4 items-end justify-end hidden group-hover:flex group-hover:text-orange-500 text-4xl z-20 cursor-pointer">
                         <BsArrowRightCircleFill />
                     </Link>
                     <span className="absolute bottom-4 right-4 flex items-end justify-end text-white group-hover:hidden text-4xl z-20 cursor-pointer">
@@ -71,7 +71,7 @@ const ShopByCollection = () => {
                     <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-xl font-bold z-10 pointer-events-none">
                         Kids
                     </div>
-                    <Link href="/products" className="absolute bottom-4 right-4 items-end justify-end hidden group-hover:flex group-hover:text-orange-500 text-4xl z-20 cursor-pointer">
+                    <Link href={{ pathname: '/collections', query: { collection: "Kids" }}}  className="absolute bottom-4 right-4 items-end justify-end hidden group-hover:flex group-hover:text-orange-500 text-4xl z-20 cursor-pointer">
                         <BsArrowRightCircleFill />
                     </Link>
                     <span className="absolute bottom-4 right-4 flex items-end justify-end text-white group-hover:hidden text-4xl z-20 cursor-pointer">
@@ -92,7 +92,7 @@ const ShopByCollection = () => {
                     <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-xl font-bold z-10 pointer-events-none">
                         Trending
                     </div>
-                    <Link href="/products" className="absolute bottom-4 right-4 items-end justify-end hidden group-hover:flex group-hover:text-orange-500 text-4xl z-20 cursor-pointer">
+                    <Link href={{ pathname: '/collections', query: { collection: "Trending" }}}  className="absolute bottom-4 right-4 items-end justify-end hidden group-hover:flex group-hover:text-orange-500 text-4xl z-20 cursor-pointer">
                         <BsArrowRightCircleFill />
                     </Link>
                     <span className="absolute bottom-4 right-4 flex items-end justify-end text-white group-hover:hidden text-4xl z-20 cursor-pointer">

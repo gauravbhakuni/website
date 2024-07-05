@@ -6,6 +6,7 @@ import { urlFor } from "@/app/lib/sanity";
 
 import { getData, getAllData } from "@/components/GetData";
 import ImageCarousel from "@/components/ImageCarousel";
+import Link from "next/link";
 
 const shoes = [
   {
@@ -91,6 +92,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { Card, CardContent } from "@/components/ui/card";
 
 const Products = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -135,24 +137,40 @@ const Products = () => {
         </div>
       </div>
 
-      <div>
-        <h1 className="text-center pt-8 text-3xl text-black md:text-5xl">All Products</h1>
-      </div>
-      <div className="bg-white flex flex-col items-center pt-8">
-        <ImageCarousel products={products} />
-      </div>
-      <div className="bg-white flex flex-col items-center">
-        <ImageCarousel products={products} />
-      </div>
-      <div className="bg-white flex flex-col items-center">
-        <ImageCarousel products={products} />
-      </div>
-      <div className="bg-white flex flex-col items-center">
-        <ImageCarousel products={products} />
-      </div>
-      <div className="bg-white flex flex-col items-center pb-10">
-        <ImageCarousel products={products} />
-      </div>
+      <div className='h-full'>
+            <h1 className='text-black text-5xl text-center py-8'>All Products</h1>
+            <div className='h-full grid grid-cols-2 md:grid-cols-4 gap-6 text-black p-8'>
+                {products.map((product) => (
+                    <Link href={{
+                        pathname: `/products/${product.slug}`,
+                        query: { slug: product.slug },
+                    }}
+                    >
+                        <Card className='h-[24vh] sm:h-[32vh] md:h-[38vh] xl:h-[34vh] bg-black/80 border border-black/10 group'>
+                            <CardContent className="relative flex flex-col items-center p-4 h-full">
+                                <div className="hidden group-hover:flex absolute top-0 z-40 space-x-2 mt-4 justify-start">
+                                    {product.categories.map((category, tagIndex) => (
+                                        <span key={tagIndex} className="text-sm bg-blue-200 text-blue-800 opacity-70 rounded-sm px-2 py-1">
+                                            {category.name}
+                                        </span>
+                                    ))}
+                                </div>
+                                <Image
+                                    src={urlFor(product.images[0]).url()}
+                                    alt={product.name}
+                                    width={100}
+                                    height={100}
+                                    className="mb-4"
+                                />
+                                <span className="text-[0.7rem] md:text-[1rem] text-white text-center">{product.name}</span>
+                                <span className="text-lg text-gray-300">₹{product.price.toFixed(2)}</span>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                ))}
+            </div>
+        </div>
+
     </div>
   );
 };

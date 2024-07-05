@@ -87,3 +87,26 @@ export const getAllData = async () => {
     return [];
   }
 };
+
+export const getCollectionData = async (collection) => {
+  try {
+    const query = `*[_type == 'product' && references(*[_type == 'category' && name == '${collection}']._id, categories)] {
+    _id,
+    name,
+    description,
+    price,
+    images,
+    price_id,
+    "slug": slug.current,
+    "categories": categories[]-> {
+      name
+    }
+  }
+  `;
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};

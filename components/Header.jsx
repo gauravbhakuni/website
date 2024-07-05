@@ -18,7 +18,7 @@ const Header = () => {
       };
 
     return (
-        <header className="py-8 xl:py-12 bg-black/60 text-white overflow-hidden">
+        <header className="py-8 xl:py-12 bg-black/90 text-white overflow-hidden">
             <div className="px-4 sm:px-8 flex justify-between items-center">
 
                 {/* logo */}

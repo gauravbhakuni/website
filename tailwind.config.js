@@ -30,7 +30,7 @@ module.exports = {
         '2': '2deg',
       },
       colors: {
-        primary: '#24292e',
+        primary: 'white',
         accent: {
           DEFAULT: "#CCCCCC",
           hover: "#AAAAAA",

@@ -33,10 +33,10 @@ const ContactUs = () => {
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-white">
+          <h2 className="mt-2 pb-6 text-center text-5xl leading-9 font-extrabold text-black">
             Contact Us
           </h2>
-          <p className="mt-2 text-center text-sm leading-5 text-white/80">
+          <p className="mt-2 text-center text-sm leading-5 text-black/80">
             We would love to hear from you! Please fill out this form and we will get in touch with you shortly.
           </p>
         </div>
