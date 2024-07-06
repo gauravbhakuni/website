@@ -48,7 +48,7 @@ const ProductDetails = () => {
         };
 
         fetchData();
-    }, []);
+    }, [slug]);
 
     const handle = () => {
         if (product) {

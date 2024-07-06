@@ -19,7 +19,7 @@ const Collection = () => {
             setProducts(products);
         };
         fetchData();
-    }, []);
+    }, [collection]);
 
     return (
         <div className='h-full'>
