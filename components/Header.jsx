@@ -32,7 +32,7 @@ const Header = () => {
                 {/* desktop nav */}
                 <div className="hidden xl:flex items-center gap-8">
                     <Nav />
-                    <SearchBar onSearch={handleSearch} />
+                    {/* <SearchBar onSearch={handleSearch} /> */}
                     <Link href="/cart"><span className="text-2xl text-white/40 hover:text-white cursor-pointer"><MdShoppingCart/></span></Link>
                 </div>
 

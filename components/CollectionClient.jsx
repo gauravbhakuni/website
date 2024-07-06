@@ -31,7 +31,7 @@ const CollectionClient = () => {
                         query: { slug: product.slug },
                     }}
                     >
-                        <Card className='h-[24vh] sm:h-[32vh] md:h-[38vh] xl:h-[34vh] bg-black/80 border border-black/10 group'>
+                        <Card className='h-[34vh] md:h-[38vh] xl:h-[34vh] bg-black/80 border border-black/10 group'>
                             <CardContent className="relative flex flex-col items-center p-4 h-full">
                                 <div className="hidden group-hover:flex absolute top-0 z-40 space-x-2 mt-4 justify-start">
                                     {product.categories.map((category, tagIndex) => (
