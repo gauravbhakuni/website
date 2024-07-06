@@ -9,6 +9,14 @@ const Cart = () => {
     const { cartItems, removeFromCart } = useCart();
     console.log(cartItems);
 
+    const checkout = (item) => {
+        //checkout form
+        // call your backend API to place order
+        // clear cart after successful order
+        // show success message
+        removeFromCart(item);
+    };
+
     return (
         <>
             <div className="flex h-screen bg-white text-black justify-center items-center">
@@ -30,7 +38,7 @@ const Cart = () => {
                                         />
                                         <h4 className="text-sm py-5 font-bold">{item.name}</h4>
                                         <p className="text-sm py-5">MRP: ₹{item.price}</p>
-                                        <p className="text-sm py-5">count</p>
+                                        <p className="text-sm py-5">count: 1</p>
                                         <button
                                             onClick={() => removeFromCart(item)}
                                             className="bg-red-500 my-5 text-white rounded hover:bg-red-700"
@@ -38,7 +46,7 @@ const Cart = () => {
                                             Remove
                                         </button>
                                         <button
-                                            onClick={() => removeFromCart(item)}
+                                            onClick={checkout(item)}
                                             className="bg-green-500 my-5 text-white rounded hover:bg-green-700"
                                         >
                                             Checkout
