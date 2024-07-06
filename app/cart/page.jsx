@@ -9,14 +9,6 @@ const Cart = () => {
     const { cartItems, removeFromCart } = useCart();
     console.log(cartItems);
 
-    const checkout = (item) => {
-        //checkout form
-        // call your backend API to place order
-        // clear cart after successful order
-        // show success message
-        removeFromCart(item);
-    };
-
     return (
         <>
             <div className="flex h-screen bg-white text-black justify-center items-center">
@@ -46,7 +38,7 @@ const Cart = () => {
                                             Remove
                                         </button>
                                         <button
-                                            onClick={checkout(item)}
+                                            onClick={() => removeFromCart(item)}
                                             className="bg-green-500 my-5 text-white rounded hover:bg-green-700"
                                         >
                                             Checkout
