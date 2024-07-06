@@ -140,11 +140,11 @@ const Products = () => {
       <div className='h-full'>
             <h1 className='text-black text-5xl text-center py-8'>All Products</h1>
             <div className='h-full grid grid-cols-2 md:grid-cols-4 gap-6 text-black p-8'>
-                {products.map((product) => (
+                {products.map((product, index) => (
                     <Link href={{
                         pathname: `/products/${product.slug}`,
                         query: { slug: product.slug },
-                    }}
+                    }} key={index}
                     >
                         <Card className='h-[24vh] sm:h-[32vh] md:h-[38vh] xl:h-[34vh] bg-black/80 border border-black/10 group'>
                             <CardContent className="relative flex flex-col items-center p-4 h-full">
