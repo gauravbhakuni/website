@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { urlFor } from "@/app/lib/sanity";
@@ -59,7 +59,7 @@ const ProductDetails = () => {
     };
 
     return (
-        <>
+        <Suspense fallback={<div className='h-screen flex justify-center items-center text-black bg-white text-6xl'>Loading...</div>}>
             {product && (
                 <div className="h-full bg-white pt-10">
                     <div className="smm:px-4 sm:container h-[8vh] bg-black flex justify-center items-center">
@@ -129,7 +129,7 @@ const ProductDetails = () => {
                     </div>
                 </div>
             )}
-        </>
+        </Suspense>
     )
 }
 
