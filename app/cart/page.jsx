@@ -46,7 +46,7 @@ const Cart = () => {
                         <MdShoppingCart className="text-7xl text-gray-400" />
                         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center">Your Cart is Empty</h1>
                         <p className="text-gray-600 text-center max-w-md">
-                            Looks like you haven't added anything to your cart yet.
+                            Looks like you have not added anything to your cart yet.
                         </p>
                         <Link 
                             href="/products"

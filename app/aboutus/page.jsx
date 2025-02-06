@@ -152,7 +152,7 @@ const AboutUs = () => {
                 <div className="backdrop-blur-lg bg-white/10 p-6 rounded-xl hover:bg-white/20 transition-colors">
                   <h4 className="font-semibold text-white mb-2">Customer First</h4>
                   <p className="text-gray-300">
-                    Your satisfaction is our priority. We're dedicated to providing exceptional service and support at every step.
+                    Your satisfaction is our priority. We are dedicated to providing exceptional service and support at every step.
                   </p>
                 </div>
               </div>
