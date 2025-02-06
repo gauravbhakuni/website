@@ -37,8 +37,7 @@ export default function RootLayout({ children }) {
       <body className={roboto.variable}>
         <CartProvider>
           <Header />
-            <FadeTransition />
-            <PageTransition>{children}</PageTransition>
+          {children}
           <Footer />
         </CartProvider>
       </body>

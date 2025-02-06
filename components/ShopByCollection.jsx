@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 const ShopByCollection = () => {
     return (
-        <div className="pt-10 bg-white h-[65vh] md:h-[50vh]">
+        <div className="pt-10 bg-blue-200 h-[65vh] md:h-[50vh]">
             <h1 className="text-black text-4xl sm:text-5xl text-center pb-6">SHOP BY COLLECTIONS</h1>
             <div className="px-10 py-6 grid grid-cols-2 md:grid-cols-4 gap-8 h-[50vh] md:h-[44vh]">
 
@@ -21,7 +21,7 @@ const ShopByCollection = () => {
                         <Image
                             src={menCollection}
                             alt="Men Collection"
-                            layout="fill"
+                            fill
                             objectFit="cover"
                             className="z-0 opacity-80 transition-transform duration-300 transform-gpu group-hover:scale-110 group-hover:opacity-100"
                         />
@@ -42,7 +42,7 @@ const ShopByCollection = () => {
                         <Image
                             src={womenCollection}
                             alt="Men Collection"
-                            layout="fill"
+                            fill
                             objectFit="cover"
                             className="z-0 opacity-80 transition-transform duration-300 transform-gpu group-hover:scale-110 group-hover:opacity-100"
                         />
@@ -63,7 +63,7 @@ const ShopByCollection = () => {
                         <Image
                             src={kidsCollection}
                             alt="Men Collection"
-                            layout="fill"
+                            fill
                             objectFit="cover"
                             className="z-0 opacity-80 transition-transform duration-300 transform-gpu group-hover:scale-110 group-hover:opacity-100"
                         />
@@ -84,7 +84,7 @@ const ShopByCollection = () => {
                         <Image
                             src={trendingCollection}
                             alt="Men Collection"
-                            layout="fill"
+                            fill
                             objectFit="cover"
                             className="z-0 opacity-80 transition-transform duration-300 transform-gpu group-hover:scale-110 group-hover:opacity-100"
                         />

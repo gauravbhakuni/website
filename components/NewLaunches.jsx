@@ -20,15 +20,21 @@ const PopularSection = () => {
   }, []);
 
   return (
-    <div className="bg-black flex flex-col items-center h-[75vh] sm:h-[80vh] smm:pt-24 sm:pt-20 md:pt-20 xl:pt-24">
-      <h1 className="text-white text-4xl sm:text-5xl md:text-6xl text-left pb-6">New Launches</h1>
-      <p className="flex flex-row gap-4">Drag <span className="py-2">
-        <FaArrowRight />
-      </span>
+    <div className="bg-gradient-to-b from-gray-900 to-black flex flex-col items-center min-h-[80vh] py-16 px-4">
+      <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
+        New Launches
+      </h1>
+      <p className="flex items-center gap-3 text-gray-300 text-lg mb-8">
+        Swipe to explore
+        <span className="animate-bounce-horizontal">
+          <FaArrowRight className="text-orange-400" />
+        </span>
       </p>
       <ImageCarousel products={products} />
-      <div className="pt-8 sm:pt-16">
-        <h1 className="px-4 font-light text-center text-xl sm:text-3xl md:text-5xl text-orange-400">Step up your style game with our latest collection</h1>
+      <div className="mt-12 max-w-3xl">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium bg-gradient-to-r from-orange-400 via-rose-400 to-purple-500 bg-clip-text text-transparent">
+          Elevate Your Style With Our Latest Collection
+        </h2>
       </div>
     </div>
   )

@@ -5,22 +5,14 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { urlFor } from "@/app/lib/sanity";
 import { MdShoppingCart } from "react-icons/md";
+import { motion } from "framer-motion";
+import { FaTruck, FaShieldAlt, FaUndo, FaArrowRight } from "react-icons/fa";
 
 import { getData, getAllData } from "@/components/GetData";
 import { Button } from "@/components/ui/button";
 import ImageCarousel from "@/components/ImageCarousel";
 import { useCart } from "@/app/context/CartContext";
-
-import {
-    Breadcrumb,
-    BreadcrumbEllipsis,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import Link from "next/link";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 
 const getRandomProducts = (products, num) => {
     const shuffled = products.sort(() => 0.5 - Math.random());
@@ -32,7 +24,9 @@ const ProductDetailsClient = () => {
     const [product, setproduct] = useState();
     const [products, setProducts] = useState([]);
     const [randomProducts, setRandomProducts] = useState([]);
+    const [selectedSize, setSelectedSize] = useState(null);
     const { addToCart } = useCart();
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const slug = searchParams.get("slug");
 
@@ -51,86 +45,177 @@ const ProductDetailsClient = () => {
     }, [slug]);
 
     const handle = () => {
-        if (product) {
-            addToCart(product);
+        if (product && selectedSize) {
+            addToCart({ ...product, selectedSize });
         } else {
-            console.log("Product data is not set yet.");
+            alert("Please select a size first");
         }
     };
+
+    const features = [
+        { icon: FaTruck, text: "Free Shipping", subtext: "On orders above ₹999" },
+        { icon: FaShieldAlt, text: "Secure Payment", subtext: "100% secure payment" },
+        { icon: FaUndo, text: "Easy Returns", subtext: "10 day return policy" },
+    ];
 
     return (
         <>
             {product && (
-                <div className="h-full bg-white pt-10">
-                    <div className="smm:px-4 sm:container h-[8vh] bg-black flex justify-center items-center">
-                        <div>
-                            <Breadcrumb>
-                                <BreadcrumbList>
+                <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+                    {/* Breadcrumb - Updated */}
+                    <div className="bg-gradient-to-r from-gray-900 to-black py-3 sm:py-4 sticky top-0 z-50">
+                        <div className="container px-4">
+                            <Breadcrumb className="flex items-center text-[10px] sm:text-sm">
+                                <BreadcrumbList className="flex items-center space-x-1 sm:space-x-2">
                                     <BreadcrumbItem>
-                                        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                                        <BreadcrumbLink 
+                                            href="/" 
+                                            className="text-gray-400 hover:text-white transition-colors flex items-center"
+                                        >
+                                            Home
+                                        </BreadcrumbLink>
                                     </BreadcrumbItem>
-                                    <BreadcrumbSeparator />
+                                    <BreadcrumbSeparator className="text-gray-500" />
                                     <BreadcrumbItem>
-                                        <BreadcrumbLink href="/products">All Products</BreadcrumbLink>
+                                        <BreadcrumbLink 
+                                            href="/products" 
+                                            className="text-gray-400 hover:text-white transition-colors"
+                                        >
+                                            Products
+                                        </BreadcrumbLink>
                                     </BreadcrumbItem>
-                                    <BreadcrumbSeparator />
+                                    <BreadcrumbSeparator className="text-gray-500" />
                                     <BreadcrumbItem>
-                                        <BreadcrumbPage>{product.name}</BreadcrumbPage>
+                                        <BreadcrumbPage className="text-white font-medium truncate max-w-[100px] sm:max-w-none">
+                                            {product.name}
+                                        </BreadcrumbPage>
                                     </BreadcrumbItem>
                                 </BreadcrumbList>
                             </Breadcrumb>
                         </div>
                     </div>
-                    <div className="max-w-full mx-auto px-4 sm:px-0 md:px-8">
-                        <div className="flex flex-col xl:flex-row px-8 items-center justify-evenly py-12 sm:py-24 md:py-32">
-                            <div className="h-[40vh] w-[36vh] sm:h-[56vh] sm:w-[50vh] relative">
-                                <Image
-                                    src={urlFor(product.images[0]).url()}
-                                    alt={product.name}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    className="rounded-lg"
-                                />
+
+                    {/* Product Section */}
+                    <div className="w-full px-4 sm:container sm:px-6 py-4 sm:py-12">
+                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-12">
+                            {/* Image Gallery */}
+                            <div className="space-y-3 sm:space-y-4">
+                                <motion.div
+                                    className="relative h-[45vh] sm:h-[50vh] md:h-[60vh] w-full rounded-lg sm:rounded-2xl overflow-hidden bg-gray-50"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                >
+                                    <Image
+                                        src={urlFor(product.images[currentImageIndex]).url()}
+                                        alt={product.name}
+                                        fill
+                                        className="object-contain"
+                                        priority
+                                    />
+                                </motion.div>
+                                <div className="flex gap-2 sm:gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                                    {product.images.map((image, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => setCurrentImageIndex(index)}
+                                            className={`relative h-14 w-14 sm:h-24 sm:w-24 rounded-md sm:rounded-lg overflow-hidden flex-shrink-0 bg-gray-50
+                                                ${currentImageIndex === index ? 'ring-2 ring-black' : ''}`}
+                                        >
+                                            <Image
+                                                src={urlFor(image).url()}
+                                                alt={`${product.name} view ${index + 1}`}
+                                                fill
+                                                className="object-contain p-1"
+                                            />
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="w-full md:w-full xl:w-1/4 pt-8 xl:pt-0">
-                                <h1 className="text-4xl text-black font-light">{product.name}</h1>
-                                <p className="pt-4 text-black text-xl">MRP: ₹ {product.price}.00</p>
-                                <p className="text-md text-black/80">incl. of taxes</p>
-                                <div className="flex flex-col pt-4 pb-4">
-                                    <div>
-                                        <h1 className="text-black">Select Size (UK) :</h1>
-                                    </div>
-                                    <div className="flex justify-evenly sm:justify-normal">
-                                        <Button variant="outline" className="text-black focus:text-white focus:bg-black w-10 sm:w-20">UK 7</Button>
-                                        <Button variant="outline" className="text-black focus:text-white focus:bg-black w-10 sm:w-20">UK 8</Button>
-                                        <Button variant="outline" className="text-black focus:text-white focus:bg-black w-10 sm:w-20">UK 9</Button>
-                                        <Button variant="outline" className="text-black focus:text-white focus:bg-black w-10 sm:w-20">UK 10</Button>
-                                        <Button variant="outline" className="text-black focus:text-white focus:bg-black w-10 sm:w-20">UK 11</Button>
+
+                            {/* Product Info */}
+                            <div className="space-y-4 sm:space-y-8 mt-2 sm:mt-0">
+                                <div>
+                                    <h1 className="text-xl sm:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">{product.name}</h1>
+                                    <p className="text-xl sm:text-3xl font-semibold text-gray-900 mb-1 sm:mb-2">₹{product.price.toFixed(2)}</p>
+                                    <p className="text-[10px] sm:text-sm text-gray-500">incl. of taxes and duties</p>
+                                </div>
+
+                                {/* Size Selection */}
+                                <div className="space-y-2 sm:space-y-4">
+                                    <h2 className="text-sm sm:text-lg font-semibold text-gray-900">Select Size (UK)</h2>
+                                    <div className="grid grid-cols-5 gap-1 sm:gap-2">
+                                        {[7, 8, 9, 10, 11].map((size) => (
+                                            <button
+                                                key={size}
+                                                onClick={() => setSelectedSize(size)}
+                                                className={`py-1.5 sm:py-3 rounded-md sm:rounded-lg border text-xs sm:text-base
+                                                    ${selectedSize === size
+                                                        ? 'border-black bg-black text-white'
+                                                        : 'border-gray-300 text-black hover:border-gray-900'
+                                                    }`}
+                                            >
+                                                UK {size}
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
-                                <button onClick={handle} className="bg-black hover:bg-black/60 hover:text-black p-2 sm:p-4">
-                                    <div className="flex">
-                                        <h1 className="pr-3">Add to Cart</h1>
-                                        <span className="py-2">
-                                            <MdShoppingCart />
-                                        </span>
-                                    </div>
+
+                                {/* Add to Cart Button */}
+                                <button
+                                    onClick={handle}
+                                    className="w-full py-2.5 sm:py-4 bg-black text-white rounded-md sm:rounded-lg hover:bg-gray-900 
+                                        transition-colors flex items-center justify-center gap-2 text-sm sm:text-lg font-semibold"
+                                >
+                                    Add to Cart
+                                    <MdShoppingCart className="text-base sm:text-xl" />
                                 </button>
+
+                                {/* Features */}
+                                <div className="grid grid-cols-3 gap-1 sm:gap-4 pt-4 sm:pt-8 border-t">
+                                    {features.map((feature, index) => (
+                                        <div key={index} className="text-center px-1">
+                                            <feature.icon className="mx-auto text-lg sm:text-2xl mb-1 sm:mb-2 text-gray-900" />
+                                            <h3 className="font-semibold text-[10px] sm:text-sm text-gray-900">{feature.text}</h3>
+                                            <p className="text-[8px] sm:text-xs text-gray-500">{feature.subtext}</p>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Description */}
+                                <div className="border-t pt-4 sm:pt-8">
+                                    <h2 className="text-base sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-4">Product Description</h2>
+                                    <p className="text-xs sm:text-base text-gray-600 leading-relaxed">{product.description}</p>
+                                </div>
                             </div>
                         </div>
-                        <div className="h-full py-6 sm:py-0 sm:pb-10 px-8">
-                            <h1 className="text-3xl text-black font-bold">Product Description</h1>
-                            <p className="pt-4 text-black text-xl">{product.description}</p>
-                        </div>
                     </div>
-                    <div className="bg-black flex flex-col items-center h-[60vh] sm:h-[50vh] md:h-[70vh] xl:h-[60vh] smm:pt-24 sm:pt-4 md:pt-20 xl:pt-10">
-                        <h1 className="text-white text-4xl sm:text-5xl md:text-6xl text-left pb-6">Similar Products</h1>
-                        <ImageCarousel products={randomProducts} />
+
+                    {/* Similar Products - Fixed for mobile */}
+                    <div className="bg-gradient-to-b from-gray-900 to-black py-8 sm:py-16 mt-6 sm:mt-12">
+                        <div className="flex flex-col items-center w-full">
+                            <h2 className="text-xl sm:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-3 sm:mb-6 text-center px-4">
+                                Similar Products
+                            </h2>
+                            <div className="flex items-center justify-center gap-2 mb-6 sm:mb-8">
+                                <p className="text-gray-400 text-sm sm:text-base">
+                                    Swipe to explore
+                                </p>
+                                <span className="animate-bounce-horizontal">
+                                    <FaArrowRight className="text-orange-400 text-sm sm:text-base" />
+                                </span>
+                            </div>
+                            
+                            {/* Carousel Container - Simplified structure */}
+                            <div className="w-full">
+                                <ImageCarousel products={randomProducts} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
         </>
-    )
-}
+    );
+};
 
-export default ProductDetailsClient
+export default ProductDetailsClient;
