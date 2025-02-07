@@ -80,7 +80,7 @@ const Products = () => {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-gray-900 to-black py-4 sticky top-0 z-50">
-        <div className="container px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="px-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <Breadcrumb className="text-sm">
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -130,7 +130,7 @@ const Products = () => {
       </div>
 
       {/* Products Grid */}
-      <div className="container px-4 py-8">
+      <div className="px-4 py-8">
         <motion.h1 
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 text-center mb-8"
           initial={{ opacity: 0, y: -20 }}
@@ -140,7 +140,7 @@ const Products = () => {
         </motion.h1>
 
         <motion.div 
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
           variants={container}
           initial="hidden"
           animate="show"
@@ -156,7 +156,7 @@ const Products = () => {
                 onMouseEnter={() => setHoveredProduct(product._id)}
                 onMouseLeave={() => setHoveredProduct(null)}
               >
-                <Card className="group relative overflow-hidden rounded-xl border-0 bg-gradient-to-b from-gray-50 to-white transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                <Card className="group relative overflow-hidden rounded-xl border-0 bg-black/20 to-white transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
                   <CardContent className="p-4">
                     {/* New Arrival Badge */}
                     {product.isNewArrival && (
@@ -221,7 +221,7 @@ const Products = () => {
                     </div>
 
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </CardContent>
                 </Card>
               </Link>

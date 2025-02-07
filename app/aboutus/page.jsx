@@ -80,7 +80,7 @@ const AboutUs = () => {
       {/* Content Sections with Glass Morphism */}
       <div className="bg-gradient-to-b from-black via-gray-900 to-black">
         {/* Stats Section */}
-        <div className="container mx-auto px-4 py-24">
+        <div className="mx-auto px-4 py-24">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ const AboutUs = () => {
         </div>
 
         {/* Values Section */}
-        <div className="container mx-auto px-4 py-24">
+        <div className="mx-auto px-4 py-24">
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Values Column */}
             <motion.div 
@@ -162,7 +162,7 @@ const AboutUs = () => {
 
         {/* CTA Section */}
         <motion.div 
-          className="container mx-auto px-4 py-24 text-center"
+          className="mx-auto px-4 py-24 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}

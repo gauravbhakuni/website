@@ -96,7 +96,7 @@ const SaleSection = () => {
   };
 
   return (
-    <div className="relative w-full min-h-[50vh] md:min-h-[80vh] xl:min-h-[95vh] bg-black overflow-hidden">
+    <div className="relative w-full min-h-[40vh] md:min-h-[80vh] xl:min-h-[95vh] bg-black overflow-hidden">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={currentIndex}
@@ -120,17 +120,18 @@ const SaleSection = () => {
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
+              backgroundColor: '#111111', // Dark background instead of pure black
             }}
           />
 
-          {/* Content Overlay */}
-          <div className="absolute inset-0 bg-black/40">
-            <div className="h-full flex flex-col items-center justify-center text-white text-center px-4">
+          {/* Content Overlay - Adjusted for better mobile display */}
+          <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+            <div className="w-full px-4 py-6 sm:py-8 md:py-12 flex flex-col items-center justify-center text-white text-center">
               <motion.h2
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-4xl md:text-6xl font-bold mb-4"
+                className="text-2xl sm:text-4xl md:text-6xl font-bold mb-2 sm:mb-4"
               >
                 {backgroundImages[currentIndex].title}
               </motion.h2>
@@ -138,7 +139,7 @@ const SaleSection = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-xl md:text-2xl text-gray-200 mb-8"
+                className="text-base sm:text-xl md:text-2xl text-gray-200 mb-4 sm:mb-8"
               >
                 {backgroundImages[currentIndex].subtitle}
               </motion.p>
@@ -146,7 +147,7 @@ const SaleSection = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"
+                className="bg-white text-black px-6 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-semibold hover:bg-gray-200 transition-colors"
               >
                 Shop Now
               </motion.button>
@@ -155,30 +156,30 @@ const SaleSection = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - Adjusted size for mobile */}
       <button
         onClick={handlePrevClick}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-2 rounded-full text-white transition-colors z-10"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1.5 sm:p-2 rounded-full text-white transition-colors z-10"
       >
-        <FaChevronLeft size={24} />
+        <FaChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
       </button>
       <button
         onClick={handleNextClick}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-2 rounded-full text-white transition-colors z-10"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1.5 sm:p-2 rounded-full text-white transition-colors z-10"
       >
-        <FaChevronRight size={24} />
+        <FaChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
       </button>
 
-      {/* Dot Indicators */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+      {/* Dot Indicators - Adjusted position for mobile */}
+      <div className="absolute bottom-3 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex gap-1.5 sm:gap-2 z-10">
         {backgroundImages.map((image, index) => (
           <button
             key={image.id}
             onClick={() => handleDotClick(index)}
-            className={`h-2 transition-all duration-300 rounded-full ${
+            className={`h-1.5 sm:h-2 transition-all duration-300 rounded-full ${
               currentIndex === index 
-                ? 'w-8 bg-white' 
-                : 'w-2 bg-white/50 hover:bg-white/80'
+                ? 'w-6 sm:w-8 bg-white' 
+                : 'w-1.5 sm:w-2 bg-white/50 hover:bg-white/80'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

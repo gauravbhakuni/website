@@ -20,7 +20,7 @@ const PopularSection = () => {
     }, []);
 
     return (
-        <div className="bg-gradient-to-b from-black to-gray-900 flex flex-col items-center min-h-[80vh] py-16 px-4">
+        <div className="bg-gradient-to-b from-black to-gray-900 flex flex-col items-center min-h-[70vh] md:min-h-[80vh] pt-8 px-4">
             <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 Popular Products
             </h1>
