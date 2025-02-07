@@ -64,7 +64,7 @@ const ProductDetailsClient = () => {
                 <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
                     {/* Breadcrumb - Updated */}
                     <div className="bg-gradient-to-r from-gray-900 to-black py-3 sm:py-4 sticky top-0 z-50">
-                        <div className="container px-4">
+                        <div className="px-4">
                             <Breadcrumb className="flex items-center text-[10px] sm:text-sm">
                                 <BreadcrumbList className="flex items-center space-x-1 sm:space-x-2">
                                     <BreadcrumbItem>
@@ -96,7 +96,7 @@ const ProductDetailsClient = () => {
                     </div>
 
                     {/* Product Section */}
-                    <div className="w-full px-4 sm:container sm:px-6 py-4 sm:py-12">
+                    <div className="w-full px-4 sm:px-6 py-4 sm:py-12">
                         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-12">
                             {/* Image Gallery */}
                             <div className="space-y-3 sm:space-y-4">

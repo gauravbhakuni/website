@@ -52,7 +52,7 @@ const CollectionClient = () => {
 
     return (
         <div className="pt-8 bg-white">
-            <div className="smm:px-4 sm:container mt-6 h-[8vh] bg-black flex justify-between items-center">
+            <div className="smm:px-4 mt-6 h-[8vh] bg-black flex justify-between items-center">
                 <div>
                     <Breadcrumb>
                         <BreadcrumbList>
