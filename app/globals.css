@@ -5,6 +5,7 @@
 :root {
   --font-cedarvilleCursive: 'Cedarville Cursive', cursive;
   --font-indieFlower: 'Indie Flower', cursive;
+  background: #000;
 }
 
 /* Define scrollbar styles */
@@ -31,7 +32,7 @@
 
 @layer base {
   body {
-    @apply font-primary bg-primary text-white leading-loose;
+    @apply font-primary bg-black text-white leading-loose;
   }
   .h1{
     @apply text-[48px] md:text-[80px] leading-[1.1] font-semibold;

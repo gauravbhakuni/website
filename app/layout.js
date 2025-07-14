@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
       <body className={roboto.variable}>
         <CartProvider>
           <Header />
-          {children}
+          <div className="mt-20">{children}</div>
           <Footer />
         </CartProvider>
       </body>

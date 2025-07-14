@@ -79,7 +79,7 @@ const Products = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-gray-900 to-black py-4 sticky top-0 z-50">
+      <div className="bg-gradient-to-r from-gray-900 to-black py-4 sticky top-0 z-10">
         <div className="px-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <Breadcrumb className="text-sm">
             <BreadcrumbList>
