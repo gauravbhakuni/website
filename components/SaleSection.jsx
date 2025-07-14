@@ -1,29 +1,30 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { useSwipeable } from 'react-swipeable';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { useSwipeable } from "react-swipeable";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Image from "next/image";
 
 const SaleSection = () => {
   // List of background images with unique ids
   const backgroundImages = [
-    { 
-      id: 'img1', 
-      src: 'assets/images/saleImage1.webp',
+    {
+      id: "img1",
+      src: "/assets/images/saleImage1.webp",
       title: "Summer Collection",
-      subtitle: "Up to 40% off on selected items"
+      subtitle: "Up to 40% off on selected items",
     },
-    { 
-      id: 'img2', 
-      src: 'assets/images/saleImage2.webp',
+    {
+      id: "img2",
+      src: "/assets/images/saleImage2.webp",
       title: "New Arrivals",
-      subtitle: "Discover the latest trends"
+      subtitle: "Discover the latest trends",
     },
-    { 
-      id: 'img3', 
-      src: 'assets/images/saleImage3.webp',
+    {
+      id: "img3",
+      src: "/assets/images/saleImage3.webp",
       title: "Limited Edition",
-      subtitle: "Exclusive designs for you"
+      subtitle: "Exclusive designs for you",
     },
   ];
 
@@ -81,22 +82,22 @@ const SaleSection = () => {
   const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
     exit: (direction) => ({
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
+      opacity: 0,
+    }),
   };
 
   return (
-    <div className="relative w-full min-h-[40vh] md:min-h-[80vh] xl:min-h-[95vh] bg-black overflow-hidden">
+    <div className="relative w-full min-h-[75vh] md:min-h-[85vh] xl:min-h-[95vh] bg-black overflow-hidden">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={currentIndex}
@@ -107,21 +108,19 @@ const SaleSection = () => {
           exit="exit"
           transition={{
             x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 }
+            opacity: { duration: 0.2 },
           }}
           className="absolute inset-0"
           {...handlers}
         >
           {/* Background Image */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${backgroundImages[currentIndex].src})`,
-              backgroundSize: 'contain',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              backgroundColor: '#111111', // Dark background instead of pure black
-            }}
+          <Image
+            src={backgroundImages[currentIndex].src}
+            alt={backgroundImages[currentIndex].title}
+            fill
+            priority
+            className="object-cover object-center sm:object-cover xl:object-contain z-0"
+            style={{ backgroundColor: "#111111" }}
           />
 
           {/* Content Overlay - Adjusted for better mobile display */}
@@ -159,13 +158,13 @@ const SaleSection = () => {
       {/* Navigation Arrows - Adjusted size for mobile */}
       <button
         onClick={handlePrevClick}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1.5 sm:p-2 rounded-full text-white transition-colors z-10"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black p-1.5 sm:p-2 rounded-full text-white transition-colors z-10"
       >
         <FaChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
       </button>
       <button
         onClick={handleNextClick}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1.5 sm:p-2 rounded-full text-white transition-colors z-10"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black p-1.5 sm:p-2 rounded-full text-white transition-colors z-10"
       >
         <FaChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
       </button>
@@ -177,9 +176,9 @@ const SaleSection = () => {
             key={image.id}
             onClick={() => handleDotClick(index)}
             className={`h-1.5 sm:h-2 transition-all duration-300 rounded-full ${
-              currentIndex === index 
-                ? 'w-6 sm:w-8 bg-white' 
-                : 'w-1.5 sm:w-2 bg-white/50 hover:bg-white/80'
+              currentIndex === index
+                ? "w-6 sm:w-8 bg-white"
+                : "w-1.5 sm:w-2 bg-white/50 hover:bg-white/80"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
