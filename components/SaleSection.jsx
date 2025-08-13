@@ -6,7 +6,6 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
 
 const SaleSection = () => {
-  // List of background images with unique ids
   const backgroundImages = [
     {
       id: "img1",
@@ -28,24 +27,20 @@ const SaleSection = () => {
     },
   ];
 
-  // State to manage the current background index
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  // Automatically change the background every 5 seconds
+  // Auto-slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setDirection(1);
-      setCurrentIndex((prevIndex) =>
-        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
+      setCurrentIndex((prev) =>
+        prev === backgroundImages.length - 1 ? 0 : prev + 1
       );
     }, 5000);
-
-    // Clear the interval when the component unmounts
     return () => clearInterval(interval);
-  }, [backgroundImages.length]);
+  });
 
-  // Handlers for swipe gestures
   const handlers = useSwipeable({
     onSwipedLeft: () => {
       setDirection(1);
@@ -56,33 +51,33 @@ const SaleSection = () => {
       handlePrevClick();
     },
     preventDefaultTouchmoveEvent: true,
-    trackMouse: true, // Enable mouse dragging
+    trackMouse: true,
   });
 
   const handlePrevClick = () => {
     setDirection(-1);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? backgroundImages.length - 1 : prevIndex - 1
+    setCurrentIndex((prev) =>
+      prev === 0 ? backgroundImages.length - 1 : prev - 1
     );
   };
 
   const handleNextClick = () => {
     setDirection(1);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
+    setCurrentIndex((prev) =>
+      prev === backgroundImages.length - 1 ? 0 : prev + 1
     );
   };
 
-  // New function to handle dot click
   const handleDotClick = (index) => {
     setDirection(index > currentIndex ? 1 : -1);
     setCurrentIndex(index);
   };
 
+  // Slide animation — first slide fades in for faster LCP
   const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
+      opacity: currentIndex === 0 ? 1 : 0, // no opacity animation for first slide
     }),
     center: {
       zIndex: 1,
@@ -97,7 +92,10 @@ const SaleSection = () => {
   };
 
   return (
-    <div className="relative w-full min-h-[75vh] md:min-h-[85vh] xl:min-h-[95vh] bg-black overflow-hidden">
+    <div
+      className="relative w-full min-h-[75vh] md:min-h-[85vh] xl:min-h-[95vh] bg-black overflow-hidden"
+      {...handlers}
+    >
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={currentIndex}
@@ -108,44 +106,44 @@ const SaleSection = () => {
           exit="exit"
           transition={{
             x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 },
+            opacity: { duration: 0.4 },
           }}
           className="absolute inset-0"
-          {...handlers}
         >
-          {/* Background Image */}
           <Image
             src={backgroundImages[currentIndex].src}
             alt={backgroundImages[currentIndex].title}
             fill
-            priority
+            priority={currentIndex === 0} // only first slide is priority
+            quality={80}
+            sizes="100vw"
             className="object-cover object-center sm:object-cover xl:object-contain z-0"
             style={{ backgroundColor: "#111111" }}
           />
 
-          {/* Content Overlay - Adjusted for better mobile display */}
+          {/* Overlay Content */}
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
             <div className="w-full px-4 py-6 sm:py-8 md:py-12 flex flex-col items-center justify-center text-white text-center">
               <motion.h2
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
                 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-2 sm:mb-4"
               >
                 {backgroundImages[currentIndex].title}
               </motion.h2>
               <motion.p
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.4 }}
                 className="text-base sm:text-xl md:text-2xl text-gray-200 mb-4 sm:mb-8"
               >
                 {backgroundImages[currentIndex].subtitle}
               </motion.p>
               <motion.button
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
                 className="bg-white text-black px-6 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-semibold hover:bg-gray-200 transition-colors"
               >
                 Shop Now
@@ -155,7 +153,7 @@ const SaleSection = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows - Adjusted size for mobile */}
+      {/* Navigation Arrows */}
       <button
         onClick={handlePrevClick}
         className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black p-1.5 sm:p-2 rounded-full text-white transition-colors z-10"
@@ -169,7 +167,7 @@ const SaleSection = () => {
         <FaChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
       </button>
 
-      {/* Dot Indicators - Adjusted position for mobile */}
+      {/* Dot Indicators */}
       <div className="absolute bottom-3 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex gap-1.5 sm:gap-2 z-10">
         {backgroundImages.map((image, index) => (
           <button
